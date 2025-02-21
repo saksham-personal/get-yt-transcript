@@ -13,7 +13,7 @@ class TranscriptRequest(BaseModel):
 async def get_transcript(request: TranscriptRequest):
     try:
         video_id = re.search(r"(?:v=|be\/)([\w-]{11})", request.url).group(1)
-        transcript = YouTubeTranscriptApi.get_transcript(video_id)
+        transcript = YouTubeTranscriptApi.get_transcript(video_id = video_id, proxies={"http": "nI4PJ2SCo2z8Nx28Qr-res-ANY:JRgxzLgyDIe20Ow@gw.thunderproxy.net:5959"})
         full_text = ' '.join([segment['text'] for segment in transcript])
         return {"transcript": full_text}
     except Exception as e:
